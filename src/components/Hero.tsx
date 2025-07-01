@@ -17,13 +17,12 @@ const Hero = () => {
         <div className="text-center max-w-4xl mx-auto">
           <div className="animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-bold font-poppins mb-6 leading-tight">
-              Empowering ServiceNow 
-              <span className="block gradient-text">Developers & Customers</span>
+              Empowering Businesses with
+              <span className="block gradient-text">Smart Cloud Solutions</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              We specialize in empowering ServiceNow developers and customers with expert development, 
-              architecture solutions, and technical consultancy - providing unmatched support every step of the way.
+              Apnemy helps businesses modernize, automate, and scale using platforms like ServiceNow, Salesforce, and Microsoft Azure — with expert consulting and development services tailored to your needs.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
@@ -31,7 +30,7 @@ const Hero = () => {
                 size="lg" 
                 className="bg-apnemy-600 hover:bg-apnemy-700 text-white px-8 py-3 text-lg font-semibold group"
               >
-                Get Expert Guidance 
+                Let's Build Something Great Together
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               
@@ -51,7 +50,7 @@ const Hero = () => {
             <div className="relative max-w-3xl mx-auto">
               <img
                 src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=500&fit=crop"
-                alt="ServiceNow development and architecture solutions"
+                alt="Cloud solutions with ServiceNow, Salesforce, and Azure"
                 className="rounded-2xl shadow-2xl w-full h-auto"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-apnemy-900/20 to-transparent rounded-2xl"></div>

@@ -1,5 +1,5 @@
 
-import { Facebook, Twitter, Linkedin, Instagram, ArrowUp } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Github, ArrowUp } from "lucide-react";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -10,23 +10,24 @@ const Footer = () => {
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Services", href: "#services" },
+    { name: "Team", href: "#team" },
     { name: "Contact", href: "#contact" }
   ];
 
   const services = [
-    "Web Development",
-    "Mobile Solutions", 
-    "Cloud Services",
-    "Data Analytics",
-    "Cybersecurity",
-    "24/7 Support"
+    "ServiceNow Development",
+    "Salesforce Solutions", 
+    "Azure Cloud Services",
+    "Process Automation",
+    "Architecture Design",
+    "Technical Consulting"
   ];
 
   const socialLinks = [
-    { Icon: Facebook, href: "#", label: "Facebook" },
-    { Icon: Twitter, href: "#", label: "Twitter" },
     { Icon: Linkedin, href: "#", label: "LinkedIn" },
-    { Icon: Instagram, href: "#", label: "Instagram" }
+    { Icon: Twitter, href: "#", label: "Twitter" },
+    { Icon: Github, href: "#", label: "GitHub" },
+    { Icon: Facebook, href: "#", label: "Facebook" }
   ];
 
   return (
@@ -37,9 +38,8 @@ const Footer = () => {
           <div className="md:col-span-2">
             <h3 className="text-2xl font-bold font-poppins mb-4">Apnemy</h3>
             <p className="text-primary-foreground/80 mb-6 leading-relaxed max-w-md">
-              Empowering businesses through innovative technology solutions. 
-              We transform ideas into reality with cutting-edge development 
-              and strategic consulting.
+              Empowering businesses with smart cloud solutions using ServiceNow, Salesforce, 
+              and Microsoft Azure. We bridge the gap between business goals and technical execution.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map(({ Icon, href, label }) => (
@@ -74,7 +74,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold font-poppins mb-4">Services</h4>
+            <h4 className="text-lg font-semibold font-poppins mb-4">Our Expertise</h4>
             <ul className="space-y-2">
               {services.map((service) => (
                 <li key={service}>
@@ -89,7 +89,7 @@ const Footer = () => {
 
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-primary-foreground/80 text-sm">
-            © 2024 Apnemy. All rights reserved.
+            © 2025 Apnemy. All rights reserved. | Designed with 💙 in India
           </p>
           
           <div className="flex items-center space-x-6 mt-4 md:mt-0">

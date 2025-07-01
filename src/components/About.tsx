@@ -3,7 +3,7 @@ import { Target, Users, Award, Zap } from "lucide-react";
 
 const About = () => {
   const stats = [
-    { number: "200+", label: "Developers Empowered" },
+    { number: "3", label: "Platform Expertise" },
     { number: "100+", label: "Enterprise Clients" },
     { number: "500+", label: "Solutions Delivered" },
     { number: "24/7", label: "Technical Support" }
@@ -12,23 +12,23 @@ const About = () => {
   const features = [
     {
       icon: Target,
-      title: "Expert Development",
-      description: "Specialized ServiceNow development expertise with proven methodologies and best practices for scalable solutions."
+      title: "Platform Experts",
+      description: "Certified developers & architects across ServiceNow, Salesforce & Azure with deep industry expertise."
     },
     {
       icon: Users,
-      title: "Developer Empowerment",
-      description: "We empower ServiceNow developers with advanced training, mentorship, and technical guidance to excel in their projects."
+      title: "Consultative Approach",
+      description: "We don't sell – we collaborate, advise, and deliver solutions that truly fit your business needs."
     },
     {
       icon: Award,
-      title: "Architecture Solutions",
-      description: "Comprehensive architecture consulting to design robust, scalable ServiceNow implementations that grow with your business."
+      title: "Agile & Scalable Delivery",
+      description: "Fast results with long-term maintainability, ensuring your solutions grow with your business."
     },
     {
       icon: Zap,
-      title: "Technical Consultancy",
-      description: "Unmatched technical consultancy providing strategic guidance and hands-on support throughout your ServiceNow journey."
+      title: "Value-Driven Solutions",
+      description: "Transparent, cost-effective, and outcome-focused approach with security and compliance baked into every solution."
     }
   ];
 
@@ -39,10 +39,20 @@ const About = () => {
           <h2 className="text-4xl md:text-5xl font-bold font-poppins mb-6">
             About <span className="gradient-text">Apnemy</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We are ServiceNow specialists dedicated to empowering developers and customers with expert development, 
-            architecture solutions, and technical consultancy - providing unmatched support every step of the way.
-          </p>
+          <div className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed space-y-4">
+            <p>
+              At Apnemy, we are passionate about solving real business problems through technology. 
+              We specialize in delivering enterprise-grade solutions using ServiceNow, Salesforce, and Microsoft Azure, 
+              backed by deep industry expertise and a consultative approach.
+            </p>
+            <p>
+              Our mission is to bridge the gap between business goals and technical execution, offering tailored services 
+              that bring clarity, speed, and value to every project.
+            </p>
+            <p>
+              Whether you're starting your digital journey or scaling to the next level, Apnemy is your trusted technology partner.
+            </p>
+          </div>
         </div>
 
         {/* Stats */}
@@ -88,13 +98,13 @@ const About = () => {
 
         <div className="text-center mt-12">
           <p className="text-lg text-muted-foreground mb-6">
-            Ready to elevate your ServiceNow development capabilities? Let's discuss how we can empower your team.
+            Ready to modernize your business with smart cloud solutions? Let's discuss how we can help you achieve your goals.
           </p>
           <a 
             href="#contact" 
             className="inline-flex items-center px-6 py-3 bg-apnemy-600 hover:bg-apnemy-700 text-white font-semibold rounded-lg transition-colors duration-300"
           >
-            Start Your ServiceNow Journey
+            Start Your Digital Journey
           </a>
         </div>
       </div>

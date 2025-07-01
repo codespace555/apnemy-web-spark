@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -38,20 +38,26 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      details: "hello@apnemy.com",
-      link: "mailto:hello@apnemy.com"
+      details: "contact@apnemy.com",
+      link: "mailto:contact@apnemy.com"
     },
     {
       icon: Phone,
       title: "Phone",
-      details: "+1 (555) 123-4567",
-      link: "tel:+15551234567"
+      details: "+91-XXXXXXXXXX",
+      link: "tel:+91XXXXXXXXXX"
     },
     {
       icon: MapPin,
-      title: "Office",
-      details: "123 Innovation Drive, Tech Valley, CA 94000",
+      title: "Location",
+      details: "India",
       link: "#"
+    },
+    {
+      icon: Globe,
+      title: "Website",
+      details: "www.apnemy.com",
+      link: "https://www.apnemy.com"
     }
   ];
 
@@ -60,11 +66,11 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold font-poppins mb-6">
-            Get in <span className="gradient-text">Touch</span>
+            Contact <span className="gradient-text">Us</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Ready to transform your business? Let's discuss how we can help you 
-            achieve your goals with our innovative solutions.
+            Ready to work together? Let's connect. Have a project, idea, or problem you'd like 
+            solved with technology? We're just an email away.
           </p>
         </div>
 
@@ -88,7 +94,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       className="w-full"
-                      placeholder="John Doe"
+                      placeholder="Your Name"
                     />
                   </div>
                   
@@ -104,7 +110,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       className="w-full"
-                      placeholder="john@company.com"
+                      placeholder="your@email.com"
                     />
                   </div>
                 </div>
@@ -136,7 +142,7 @@ const Contact = () => {
                     onChange={handleChange}
                     rows={5}
                     className="w-full"
-                    placeholder="Tell us about your project..."
+                    placeholder="Tell us about your project or how we can help..."
                   />
                 </div>
                 

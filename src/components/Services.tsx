@@ -1,36 +1,47 @@
-import { Code, Building2, Users, Lightbulb, Wrench, GraduationCap } from "lucide-react";
+
+import { Code, Building2, Users, Lightbulb, Wrench, GraduationCap, Zap, Settings } from "lucide-react";
 
 const Services = () => {
   const services = [
     {
       icon: Code,
       title: "Expert Development",
-      description: "Advanced ServiceNow development services with custom applications, workflows, and integrations tailored to your business needs."
-    },
-    {
-      icon: Building2,
-      title: "Architecture Solutions",
-      description: "Comprehensive architecture consulting and design for scalable, robust ServiceNow implementations that support enterprise growth."
+      description: "Specialized development services for ServiceNow, Salesforce, and Azure using best practices and modern tools for scalable and secure solutions."
     },
     {
       icon: Users,
       title: "Developer Empowerment",
-      description: "Empower your ServiceNow developers with mentorship, code reviews, and best practices to enhance their skills and productivity."
+      description: "We offer hands-on guidance and mentoring for your internal developers, helping them grow with real-world techniques and architecture exposure."
+    },
+    {
+      icon: Building2,
+      title: "Architecture Solutions",
+      description: "Design and implement scalable architectures for enterprise cloud environments — from Azure microservices to integrated Salesforce-ServiceNow systems."
     },
     {
       icon: Lightbulb,
       title: "Technical Consultancy",
-      description: "Strategic technical guidance and consulting services to optimize your ServiceNow platform and maximize business value."
-    },
-    {
-      icon: Wrench,
-      title: "Platform Optimization",
-      description: "Performance tuning, configuration optimization, and platform enhancement services to ensure peak ServiceNow performance."
+      description: "Strategic consulting for planning, implementation, and optimization across platforms, ensuring you get the most from your cloud investment."
     },
     {
       icon: GraduationCap,
-      title: "Training & Support",
-      description: "Comprehensive training programs and ongoing support to build internal ServiceNow expertise within your organization."
+      title: "Platform Advisory",
+      description: "Not sure where to start? We evaluate your goals and recommend the best technology stack — from ServiceNow workflows to Azure infrastructure."
+    },
+    {
+      icon: Settings,
+      title: "Process Optimization",
+      description: "Automate and improve business processes with low-code tools, integrations, and workflow engines that reduce errors and increase efficiency."
+    },
+    {
+      icon: Wrench,
+      title: "Cloud Modernization",
+      description: "Seamlessly migrate legacy systems to Azure or Salesforce Cloud with a smooth, secure, and future-proof plan."
+    },
+    {
+      icon: Zap,
+      title: "Solution Design & Strategy",
+      description: "We co-create digital solutions tailored to your business objectives — with a sharp focus on ROI, speed, and innovation."
     }
   ];
 
@@ -39,30 +50,30 @@ const Services = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold font-poppins mb-6">
-            Our <span className="gradient-text">Expertise</span>
+            Services <span className="gradient-text">We Offer</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We provide expert ServiceNow development, architecture solutions, and technical consultancy 
-            to empower developers and customers with unmatched support at every step.
+            Comprehensive cloud solutions across ServiceNow, Salesforce, and Microsoft Azure 
+            to help your business modernize, automate, and scale effectively.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <div 
               key={index}
-              className="bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 group animate-fade-in"
+              className="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 group animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-apnemy-100 rounded-lg mb-6 group-hover:bg-apnemy-600 transition-colors duration-300">
-                <service.icon className="h-7 w-7 text-apnemy-600 group-hover:text-white transition-colors duration-300" />
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-apnemy-100 rounded-lg mb-4 group-hover:bg-apnemy-600 transition-colors duration-300">
+                <service.icon className="h-6 w-6 text-apnemy-600 group-hover:text-white transition-colors duration-300" />
               </div>
               
-              <h3 className="text-xl font-semibold font-poppins mb-4 group-hover:text-apnemy-600 transition-colors duration-300">
+              <h3 className="text-lg font-semibold font-poppins mb-3 group-hover:text-apnemy-600 transition-colors duration-300">
                 {service.title}
               </h3>
               
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed text-sm">
                 {service.description}
               </p>
             </div>
@@ -71,13 +82,13 @@ const Services = () => {
 
         <div className="text-center mt-12">
           <p className="text-lg text-muted-foreground mb-6">
-            Need specialized ServiceNow development or architecture guidance? We're here to empower your success.
+            Ready to transform your business with our comprehensive cloud solutions?
           </p>
           <a 
             href="#contact" 
             className="inline-flex items-center px-6 py-3 bg-apnemy-600 hover:bg-apnemy-700 text-white font-semibold rounded-lg transition-colors duration-300"
           >
-            Get Expert Consultation
+            Let's Build Something Great Together
           </a>
         </div>
       </div>
