@@ -1,37 +1,37 @@
 
-import { Code, Smartphone, Cloud, BarChart, Shield, Headphones } from "lucide-react";
+import { Settings, Users, Shield, Workflow, Database, HeadphonesIcon } from "lucide-react";
 
 const Services = () => {
   const services = [
     {
-      icon: Code,
-      title: "Web Development",
-      description: "Custom web applications built with modern technologies for optimal performance and user experience."
+      icon: Settings,
+      title: "IT Service Management",
+      description: "Complete ITSM solutions including Incident, Problem, Change, and Knowledge Management modules."
     },
     {
-      icon: Smartphone,
-      title: "Mobile Solutions",
-      description: "Native and cross-platform mobile apps that engage users and drive business growth."
-    },
-    {
-      icon: Cloud,
-      title: "Cloud Services",
-      description: "Scalable cloud infrastructure and migration services to optimize your business operations."
-    },
-    {
-      icon: BarChart,
-      title: "Data Analytics",
-      description: "Transform your data into actionable insights with our advanced analytics and reporting solutions."
+      icon: Users,
+      title: "HR Service Delivery",
+      description: "Streamline HR processes with Employee Service Center, Case Management, and HR workflows."
     },
     {
       icon: Shield,
-      title: "Cybersecurity",
-      description: "Comprehensive security solutions to protect your digital assets and ensure compliance."
+      title: "Security Operations",
+      description: "Implement Security Incident Response, Vulnerability Response, and GRC modules for comprehensive security."
     },
     {
-      icon: Headphones,
-      title: "24/7 Support",
-      description: "Round-the-clock technical support and maintenance to keep your systems running smoothly."
+      icon: Workflow,
+      title: "IT Operations Management",
+      description: "Monitor and manage your IT infrastructure with Event Management, Discovery, and Service Mapping."
+    },
+    {
+      icon: Database,
+      title: "Customer Service Management",
+      description: "Enhance customer experience with Customer Service, Field Service Management, and Telecommunications modules."
+    },
+    {
+      icon: HeadphonesIcon,
+      title: "Platform & Integration",
+      description: "Custom app development, platform optimization, and seamless integrations with third-party systems."
     }
   ];
 
@@ -40,11 +40,11 @@ const Services = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold font-poppins mb-6">
-            Our <span className="gradient-text">Services</span>
+            ServiceNow <span className="gradient-text">Solutions</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We offer comprehensive technology solutions designed to meet your unique 
-            business needs and drive sustainable growth.
+            We provide comprehensive ServiceNow solutions across all modules, 
+            helping organizations optimize their processes and achieve digital transformation.
           </p>
         </div>
 
@@ -72,13 +72,13 @@ const Services = () => {
 
         <div className="text-center mt-12">
           <p className="text-lg text-muted-foreground mb-6">
-            Don't see what you're looking for? We offer custom solutions tailored to your needs.
+            Need a specific ServiceNow module implementation or custom solution? We've got you covered.
           </p>
           <a 
             href="#contact" 
             className="inline-flex items-center px-6 py-3 bg-apnemy-600 hover:bg-apnemy-700 text-white font-semibold rounded-lg transition-colors duration-300"
           >
-            Get Custom Quote
+            Get ServiceNow Quote
           </a>
         </div>
       </div>

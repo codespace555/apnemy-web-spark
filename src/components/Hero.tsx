@@ -17,13 +17,13 @@ const Hero = () => {
         <div className="text-center max-w-4xl mx-auto">
           <div className="animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-bold font-poppins mb-6 leading-tight">
-              Empowering Solutions 
+              ServiceNow Solutions 
               <span className="block gradient-text">with Apnemy</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-              We deliver innovative technology solutions that transform businesses 
-              and accelerate growth in the digital age.
+              We deliver comprehensive ServiceNow solutions across all modules 
+              to transform your business processes and accelerate digital transformation.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
@@ -50,8 +50,8 @@ const Hero = () => {
           <div className="animate-slide-in-right delay-300">
             <div className="relative max-w-3xl mx-auto">
               <img
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop"
-                alt="Modern workspace with technology"
+                src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=500&fit=crop"
+                alt="ServiceNow platform dashboard"
                 className="rounded-2xl shadow-2xl w-full h-auto"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-apnemy-900/20 to-transparent rounded-2xl"></div>
