@@ -1,5 +1,4 @@
-
-import { Code, Architecture, Users, Lightbulb, Wrench, GraduationCap } from "lucide-react";
+import { Code, Building2, Users, Lightbulb, Wrench, GraduationCap } from "lucide-react";
 
 const Services = () => {
   const services = [
@@ -9,7 +8,7 @@ const Services = () => {
       description: "Advanced ServiceNow development services with custom applications, workflows, and integrations tailored to your business needs."
     },
     {
-      icon: Architecture,
+      icon: Building2,
       title: "Architecture Solutions",
       description: "Comprehensive architecture consulting and design for scalable, robust ServiceNow implementations that support enterprise growth."
     },
