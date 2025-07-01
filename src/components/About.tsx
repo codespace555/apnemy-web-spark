@@ -3,32 +3,32 @@ import { Target, Users, Award, Zap } from "lucide-react";
 
 const About = () => {
   const stats = [
-    { number: "100+", label: "ServiceNow Projects" },
-    { number: "50+", label: "Happy Clients" },
-    { number: "5+", label: "Years Experience" },
-    { number: "24/7", label: "Support Available" }
+    { number: "200+", label: "Developers Empowered" },
+    { number: "100+", label: "Enterprise Clients" },
+    { number: "500+", label: "Solutions Delivered" },
+    { number: "24/7", label: "Technical Support" }
   ];
 
   const features = [
     {
       icon: Target,
-      title: "ServiceNow Expertise",
-      description: "Deep expertise across all ServiceNow modules with certified professionals and proven methodologies."
+      title: "Expert Development",
+      description: "Specialized ServiceNow development expertise with proven methodologies and best practices for scalable solutions."
     },
     {
       icon: Users,
-      title: "End-to-End Solutions",
-      description: "From implementation to optimization, we provide comprehensive ServiceNow solutions tailored to your needs."
+      title: "Developer Empowerment",
+      description: "We empower ServiceNow developers with advanced training, mentorship, and technical guidance to excel in their projects."
     },
     {
       icon: Award,
-      title: "Certified Team",
-      description: "Our team consists of ServiceNow certified administrators, developers, and implementation specialists."
+      title: "Architecture Solutions",
+      description: "Comprehensive architecture consulting to design robust, scalable ServiceNow implementations that grow with your business."
     },
     {
       icon: Zap,
-      title: "Rapid Deployment",
-      description: "Accelerate your ServiceNow journey with our proven frameworks and best practices for faster time-to-value."
+      title: "Technical Consultancy",
+      description: "Unmatched technical consultancy providing strategic guidance and hands-on support throughout your ServiceNow journey."
     }
   ];
 
@@ -40,8 +40,8 @@ const About = () => {
             About <span className="gradient-text">Apnemy</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We are ServiceNow specialists dedicated to helping organizations unlock the full potential 
-            of the ServiceNow platform across all modules and use cases.
+            We are ServiceNow specialists dedicated to empowering developers and customers with expert development, 
+            architecture solutions, and technical consultancy - providing unmatched support every step of the way.
           </p>
         </div>
 
@@ -88,13 +88,13 @@ const About = () => {
 
         <div className="text-center mt-12">
           <p className="text-lg text-muted-foreground mb-6">
-            Ready to transform your business with ServiceNow? Let's discuss your requirements.
+            Ready to elevate your ServiceNow development capabilities? Let's discuss how we can empower your team.
           </p>
           <a 
             href="#contact" 
             className="inline-flex items-center px-6 py-3 bg-apnemy-600 hover:bg-apnemy-700 text-white font-semibold rounded-lg transition-colors duration-300"
           >
-            Contact Our ServiceNow Experts
+            Start Your ServiceNow Journey
           </a>
         </div>
       </div>

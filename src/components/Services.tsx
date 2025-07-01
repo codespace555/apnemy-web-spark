@@ -1,37 +1,37 @@
 
-import { Settings, Users, Shield, Workflow, Database, HeadphonesIcon } from "lucide-react";
+import { Code, Architecture, Users, Lightbulb, Wrench, GraduationCap } from "lucide-react";
 
 const Services = () => {
   const services = [
     {
-      icon: Settings,
-      title: "IT Service Management",
-      description: "Complete ITSM solutions including Incident, Problem, Change, and Knowledge Management modules."
+      icon: Code,
+      title: "Expert Development",
+      description: "Advanced ServiceNow development services with custom applications, workflows, and integrations tailored to your business needs."
+    },
+    {
+      icon: Architecture,
+      title: "Architecture Solutions",
+      description: "Comprehensive architecture consulting and design for scalable, robust ServiceNow implementations that support enterprise growth."
     },
     {
       icon: Users,
-      title: "HR Service Delivery",
-      description: "Streamline HR processes with Employee Service Center, Case Management, and HR workflows."
+      title: "Developer Empowerment",
+      description: "Empower your ServiceNow developers with mentorship, code reviews, and best practices to enhance their skills and productivity."
     },
     {
-      icon: Shield,
-      title: "Security Operations",
-      description: "Implement Security Incident Response, Vulnerability Response, and GRC modules for comprehensive security."
+      icon: Lightbulb,
+      title: "Technical Consultancy",
+      description: "Strategic technical guidance and consulting services to optimize your ServiceNow platform and maximize business value."
     },
     {
-      icon: Workflow,
-      title: "IT Operations Management",
-      description: "Monitor and manage your IT infrastructure with Event Management, Discovery, and Service Mapping."
+      icon: Wrench,
+      title: "Platform Optimization",
+      description: "Performance tuning, configuration optimization, and platform enhancement services to ensure peak ServiceNow performance."
     },
     {
-      icon: Database,
-      title: "Customer Service Management",
-      description: "Enhance customer experience with Customer Service, Field Service Management, and Telecommunications modules."
-    },
-    {
-      icon: HeadphonesIcon,
-      title: "Platform & Integration",
-      description: "Custom app development, platform optimization, and seamless integrations with third-party systems."
+      icon: GraduationCap,
+      title: "Training & Support",
+      description: "Comprehensive training programs and ongoing support to build internal ServiceNow expertise within your organization."
     }
   ];
 
@@ -40,11 +40,11 @@ const Services = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold font-poppins mb-6">
-            ServiceNow <span className="gradient-text">Solutions</span>
+            Our <span className="gradient-text">Expertise</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We provide comprehensive ServiceNow solutions across all modules, 
-            helping organizations optimize their processes and achieve digital transformation.
+            We provide expert ServiceNow development, architecture solutions, and technical consultancy 
+            to empower developers and customers with unmatched support at every step.
           </p>
         </div>
 
@@ -72,13 +72,13 @@ const Services = () => {
 
         <div className="text-center mt-12">
           <p className="text-lg text-muted-foreground mb-6">
-            Need a specific ServiceNow module implementation or custom solution? We've got you covered.
+            Need specialized ServiceNow development or architecture guidance? We're here to empower your success.
           </p>
           <a 
             href="#contact" 
             className="inline-flex items-center px-6 py-3 bg-apnemy-600 hover:bg-apnemy-700 text-white font-semibold rounded-lg transition-colors duration-300"
           >
-            Get ServiceNow Quote
+            Get Expert Consultation
           </a>
         </div>
       </div>
