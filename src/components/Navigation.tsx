@@ -1,11 +1,20 @@
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
+import { auth } from '@/lib/firebase';
+import { useToast } from '@/hooks/use-toast';
+import Login from './Auth/Login';
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showLoginDialog, setShowLoginDialog] = useState(false);
+  const [user] = useAuthState(auth);
+  const { toast } = useToast();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +24,22 @@ const Navigation = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      toast({
+        title: "Success",
+        description: "Logged out successfully",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    }
+  };
 
   const navItems = [
     { href: "#home", label: "Home" },
@@ -54,6 +79,29 @@ const Navigation = () => {
                   {item.label}
                 </a>
               ))}
+              {user ? (
+                <div className="flex items-center space-x-4">
+                  <span className="text-sm text-muted-foreground">
+                    {user.displayName || user.email}
+                  </span>
+                  <Button variant="outline" size="sm" onClick={handleLogout}>
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Logout
+                  </Button>
+                </div>
+              ) : (
+                <Dialog open={showLoginDialog} onOpenChange={setShowLoginDialog}>
+                  <DialogTrigger asChild>
+                    <Button variant="outline" size="sm">
+                      <User className="h-4 w-4 mr-2" />
+                      Login
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-md">
+                    <Login />
+                  </DialogContent>
+                </Dialog>
+              )}
             </div>
           </div>
 
@@ -87,6 +135,31 @@ const Navigation = () => {
                   {item.label}
                 </a>
               ))}
+              <div className="px-3 py-2 border-t">
+                {user ? (
+                  <div className="space-y-2">
+                    <p className="text-sm text-muted-foreground">
+                      {user.displayName || user.email}
+                    </p>
+                    <Button variant="outline" size="sm" onClick={handleLogout} className="w-full">
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Logout
+                    </Button>
+                  </div>
+                ) : (
+                  <Dialog open={showLoginDialog} onOpenChange={setShowLoginDialog}>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" size="sm" className="w-full">
+                        <User className="h-4 w-4 mr-2" />
+                        Login
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-md">
+                      <Login />
+                    </DialogContent>
+                  </Dialog>
+                )}
+              </div>
             </div>
           </div>
         )}

@@ -1,9 +1,16 @@
 import { useState, useEffect } from 'react';
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query, doc, updateDoc, arrayUnion, arrayRemove, addDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CalendarDays, Clock } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { CalendarDays, Clock, Heart, MessageCircle, Send, Trash2 } from 'lucide-react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '@/lib/firebase';
+import { useToast } from '@/hooks/use-toast';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Separator } from '@/components/ui/separator';
 
 interface BlogPost {
   id: string;
@@ -13,11 +20,28 @@ interface BlogPost {
   author: string;
   publishedAt: Date;
   tags: string[];
+  likes?: string[];
+  likesCount?: number;
+}
+
+interface Comment {
+  id: string;
+  postId: string;
+  userId: string;
+  userEmail: string;
+  userName: string;
+  text: string;
+  createdAt: Date;
 }
 
 const Blog = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [comments, setComments] = useState<{ [postId: string]: Comment[] }>({});
+  const [newComment, setNewComment] = useState('');
+  const [selectedPost, setSelectedPost] = useState<string | null>(null);
+  const [user] = useAuthState(auth);
+  const { toast } = useToast();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -27,7 +51,9 @@ const Blog = () => {
         const blogPosts = querySnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data(),
-          publishedAt: doc.data().publishedAt?.toDate() || new Date()
+          publishedAt: doc.data().publishedAt?.toDate() || new Date(),
+          likes: doc.data().likes || [],
+          likesCount: doc.data().likes?.length || 0
         })) as BlogPost[];
         setPosts(blogPosts);
       } catch (error) {
@@ -39,6 +65,116 @@ const Blog = () => {
 
     fetchPosts();
   }, []);
+
+  const fetchComments = async (postId: string) => {
+    try {
+      const q = query(collection(db, 'comments'), orderBy('createdAt', 'desc'));
+      const querySnapshot = await getDocs(q);
+      const allComments = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+        createdAt: doc.data().createdAt?.toDate() || new Date()
+      })) as Comment[];
+      
+      const postComments = allComments.filter(comment => comment.postId === postId);
+      setComments(prev => ({ ...prev, [postId]: postComments }));
+    } catch (error) {
+      console.error('Error fetching comments:', error);
+    }
+  };
+
+  const handleLike = async (postId: string) => {
+    if (!user) {
+      toast({
+        title: "Login Required",
+        description: "Please login to like posts",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      const postRef = doc(db, 'blog-posts', postId);
+      const post = posts.find(p => p.id === postId);
+      const isLiked = post?.likes?.includes(user.uid);
+
+      if (isLiked) {
+        await updateDoc(postRef, {
+          likes: arrayRemove(user.uid)
+        });
+      } else {
+        await updateDoc(postRef, {
+          likes: arrayUnion(user.uid)
+        });
+      }
+
+      // Update local state
+      setPosts(prev => prev.map(p => {
+        if (p.id === postId) {
+          const newLikes = isLiked 
+            ? p.likes?.filter(id => id !== user.uid) || []
+            : [...(p.likes || []), user.uid];
+          return { ...p, likes: newLikes, likesCount: newLikes.length };
+        }
+        return p;
+      }));
+
+    } catch (error) {
+      console.error('Error updating like:', error);
+      toast({
+        title: "Error",
+        description: "Failed to update like",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleAddComment = async (postId: string) => {
+    if (!user || !newComment.trim()) return;
+
+    try {
+      await addDoc(collection(db, 'comments'), {
+        postId,
+        userId: user.uid,
+        userEmail: user.email,
+        userName: user.displayName || user.email,
+        text: newComment.trim(),
+        createdAt: new Date()
+      });
+
+      setNewComment('');
+      fetchComments(postId);
+      toast({
+        title: "Success",
+        description: "Comment added successfully",
+      });
+    } catch (error) {
+      console.error('Error adding comment:', error);
+      toast({
+        title: "Error",
+        description: "Failed to add comment",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleDeleteComment = async (commentId: string, postId: string) => {
+    try {
+      await deleteDoc(doc(db, 'comments', commentId));
+      fetchComments(postId);
+      toast({
+        title: "Success",
+        description: "Comment deleted successfully",
+      });
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+      toast({
+        title: "Error",
+        description: "Failed to delete comment",
+        variant: "destructive",
+      });
+    }
+  };
 
   if (loading) {
     return (
@@ -101,9 +237,98 @@ const Blog = () => {
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-muted-foreground">By {post.author}</span>
-                    <button className="text-primary hover:text-primary/80 text-sm font-medium transition-colors">
-                      Read More →
-                    </button>
+                    <div className="flex items-center space-x-2">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleLike(post.id)}
+                        className={`${post.likes?.includes(user?.uid || '') ? 'text-red-500' : 'text-muted-foreground'}`}
+                      >
+                        <Heart className={`h-4 w-4 mr-1 ${post.likes?.includes(user?.uid || '') ? 'fill-current' : ''}`} />
+                        {post.likesCount || 0}
+                      </Button>
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => {
+                              setSelectedPost(post.id);
+                              fetchComments(post.id);
+                            }}
+                          >
+                            <MessageCircle className="h-4 w-4 mr-1" />
+                            {comments[post.id]?.length || 0}
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                          <DialogHeader>
+                            <DialogTitle>{post.title}</DialogTitle>
+                          </DialogHeader>
+                          
+                          <div className="space-y-4">
+                            <p className="text-muted-foreground">{post.excerpt}</p>
+                            
+                            <Separator />
+                            
+                            <div className="space-y-4">
+                              <h4 className="font-semibold">Comments</h4>
+                              
+                              {user ? (
+                                <div className="flex space-x-2">
+                                  <Input
+                                    placeholder="Add a comment..."
+                                    value={newComment}
+                                    onChange={(e) => setNewComment(e.target.value)}
+                                    onKeyPress={(e) => {
+                                      if (e.key === 'Enter') {
+                                        handleAddComment(post.id);
+                                      }
+                                    }}
+                                  />
+                                  <Button onClick={() => handleAddComment(post.id)} disabled={!newComment.trim()}>
+                                    <Send className="h-4 w-4" />
+                                  </Button>
+                                </div>
+                              ) : (
+                                <p className="text-muted-foreground text-sm">Please login to add comments</p>
+                              )}
+                              
+                              <div className="space-y-3">
+                                {comments[post.id]?.map((comment) => (
+                                  <div key={comment.id} className="border rounded-lg p-3">
+                                    <div className="flex items-center justify-between mb-2">
+                                      <div className="flex items-center space-x-2">
+                                        <span className="font-medium text-sm">{comment.userName}</span>
+                                        <span className="text-xs text-muted-foreground">
+                                          {comment.createdAt.toLocaleDateString()}
+                                        </span>
+                                      </div>
+                                      {user?.uid === comment.userId && (
+                                        <Button
+                                          variant="ghost"
+                                          size="sm"
+                                          onClick={() => handleDeleteComment(comment.id, post.id)}
+                                        >
+                                          <Trash2 className="h-4 w-4" />
+                                        </Button>
+                                      )}
+                                    </div>
+                                    <p className="text-sm">{comment.text}</p>
+                                  </div>
+                                ))}
+                                
+                                {comments[post.id]?.length === 0 && (
+                                  <p className="text-center text-muted-foreground text-sm py-4">
+                                    No comments yet. Be the first to comment!
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
